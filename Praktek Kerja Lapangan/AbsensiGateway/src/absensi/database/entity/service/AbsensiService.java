@@ -49,12 +49,12 @@ public class AbsensiService {
             
             }else{
                 JOptionPane.showMessageDialog(null, "Insert absensi gagal",
-                        "Error Message",JOptionPane.ERROR_MESSAGE);
+                        "Error Message(Absensi)",JOptionPane.ERROR_MESSAGE);
             }
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Insert absensi gagal, karena : "+ex,
-                    "Error Message",JOptionPane.ERROR_MESSAGE);
+                    "Error Message(Absensi)",JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
     }
@@ -84,7 +84,7 @@ public class AbsensiService {
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Update absensi gagal, karena : "+ex,
-                    "Error Message",JOptionPane.ERROR_MESSAGE);
+                    "Error Message(Absensi)",JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
     }
@@ -103,12 +103,12 @@ public class AbsensiService {
                 JOptionPane.showMessageDialog(null, "Update absensi berhasil");
             }else{
                 JOptionPane.showMessageDialog(null, "Update absensi gagal",
-                        "Error Message",JOptionPane.ERROR_MESSAGE);
+                        "Error Message(Absensi)",JOptionPane.ERROR_MESSAGE);
             }
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Update absensi gagal, karena : "+ex,
-                    "Error Message",JOptionPane.ERROR_MESSAGE);
+                    "Error Message(Absensi)",JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
     }
@@ -179,7 +179,7 @@ public class AbsensiService {
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Update absensi gagal, karena : "+ex,
-                    "Error Message",JOptionPane.ERROR_MESSAGE);
+                    "Error Message(Absensi)",JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
     }
@@ -225,7 +225,7 @@ public class AbsensiService {
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Update absensi gagal, karena : "+ex,
-                    "Error Message",JOptionPane.ERROR_MESSAGE);
+                    "Error Message(Absensi)",JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         } 
         return modelLihatAbsensi;
@@ -258,7 +258,7 @@ public class AbsensiService {
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Update absensi gagal, karena : "+ex,
-                    "Error Message",JOptionPane.ERROR_MESSAGE);
+                    "Error Message(Absensi)",JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
         return modelNgabsen;
@@ -300,7 +300,7 @@ public class AbsensiService {
             }            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "getDetailAbsen gagal, karena : "+ex,
-                    "Error Message",JOptionPane.ERROR_MESSAGE);
+                    "Error Message(Absensi)",JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
         
@@ -323,9 +323,11 @@ public class AbsensiService {
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "verifikasiAbsen gagal, karena : "+ex,
-                    "Error Message",JOptionPane.ERROR_MESSAGE);
+                    "Error Message(Absensi)",JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }        
         return cek;
     }
+    
+    
 }

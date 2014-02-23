@@ -14,7 +14,7 @@ public class Outbox {
     private String idOutbox;
     private Wali wali;
     private Admin admin;    
-//    private String nopeOutbox;
+    private String nopeOutbox;
     private String psnOutbox;
     private Date tglOutbox;
     private String waktuOutbox;
@@ -74,5 +74,12 @@ public class Outbox {
     public void setWaktuOutbox(String waktuOutbox) {
         this.waktuOutbox = waktuOutbox;
     }
-    
+
+    public String getNopeOutbox() {
+        return nopeOutbox;
+    }
+
+    public void setNopeOutbox(String nopeOutbox) {
+        this.nopeOutbox = nopeOutbox;
+    }    
 }

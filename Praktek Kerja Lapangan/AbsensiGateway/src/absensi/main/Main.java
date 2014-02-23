@@ -39,11 +39,11 @@ public class Main extends javax.swing.JFrame {
      */
     private Admin admin;
     public Main(Admin admin) {
-        try {
-            UIManager.setLookAndFeel(new WindowsLookAndFeel());
-        } catch (UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            UIManager.setLookAndFeel(new WindowsLookAndFeel());
+//        } catch (UnsupportedLookAndFeelException ex) {
+//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         this.admin=admin;     
         
         initComponents();

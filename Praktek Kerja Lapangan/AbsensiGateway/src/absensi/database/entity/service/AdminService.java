@@ -125,7 +125,7 @@ public class AdminService {
         try {
             statement = DatabaseUtilities.getConnection().createStatement();
             
-            rs = statement.executeQuery("select * from admin");
+            rs = statement.executeQuery("select * from ADMIN");
             
             while(rs.next()){
 //                 model.addColumn("ID Admin");
@@ -159,7 +159,7 @@ public class AdminService {
         boolean login = false;
         try {
             preparedStatement = DatabaseUtilities.getConnection().prepareStatement(
-                    "select * from admin where id_admin = ?  and password_admin = ?");
+                    "select * from ADMIN where id_admin = ?  and password_admin = ?");
             preparedStatement.setString(1, id_admin);
             preparedStatement.setString(2, password);
             
@@ -181,7 +181,7 @@ public class AdminService {
         Admin admin = null;
         try {
             preparedStatement = DatabaseUtilities.getConnection().prepareStatement(
-                    "select * from admin where id_admin = ?");
+                    "select * from ADMIN where id_admin = ?");
             preparedStatement.setString(1, id_admin);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
@@ -202,5 +202,21 @@ public class AdminService {
             ex.printStackTrace();
         }
         return admin;
+    }
+    
+    public static void main(String[] args) {
+        AdminService adminService = new AdminService();
+        Admin admin = new Admin();
+        
+        admin.setIdAdmin(null);
+        admin.setNamaAdmin(null);
+        admin.setAlamatAdmin(null);                
+        admin.setJkAdmin(null);
+        admin.setTempatLahirAdmin(null);
+        admin.setTglLahirAdmin(null);
+        admin.setNopeAdmin(null);
+        admin.setPasswordAdmin(null);        
+        admin.setUploadFotoAdmin(null);
+        admin.setFotoAdmin(null);
     }
 }

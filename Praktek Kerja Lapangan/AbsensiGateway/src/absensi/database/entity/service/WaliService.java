@@ -6,6 +6,7 @@
 
 package absensi.database.entity.service;
 
+import absensi.database.entity.Admin;
 import absensi.database.entity.Wali;
 import absensi.database.utility.DatabaseUtilities;
 import java.sql.PreparedStatement;
@@ -29,7 +30,7 @@ public class WaliService {
         boolean cek = false;
         try {
             preparedStatement = DatabaseUtilities.getConnection().prepareStatement(
-                    "insert into wali (id_wali, id_admin, nama_wali, alamat_wali, no_tlpn_wali) "
+                    "insert into WALI (id_wali, id_admin, nama_wali, alamat_wali, no_tlpn_wali) "
                             + "values (?, ?, ?, ?, ?)"
             );
             
@@ -39,17 +40,18 @@ public class WaliService {
             preparedStatement.setString(4, wali.getAlamatWali());
             preparedStatement.setString(5, wali.getNopeWali());
             
-            int insert = preparedStatement.executeUpdate();
+            int commit = preparedStatement.executeUpdate();
             
-            if(insert==1){
+            if(commit==1){
                 cek = true;
             }else{
                 JOptionPane.showMessageDialog(null, "Maaf, insert wali gagal",
-                        "Error Message",JOptionPane.ERROR_MESSAGE);
+                        "Error Message(Wali Service)",JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Maaf, insert wali gagal, karena : "+ex,
-                        "Error Message",JOptionPane.ERROR_MESSAGE);
+                        "Error Message(Wali Service)",JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
         }
         return cek;
     }
@@ -57,41 +59,42 @@ public class WaliService {
     public void updateWali(Wali wali){
         try {
             preparedStatement = DatabaseUtilities.getConnection().prepareStatement(
-                    "update wali set values id_admin = ?, nama_wali = ?, alamat_wali = ?, no_tlpn_wali = ? "
-                            + "where id_wali = ?"  
+                    "update WALI set id_admin = ?, nama_wali = ?, "
+                            + "alamat_wali = ?, no_tlpn_wali = ? where id_wali = ?"  
             );
                         
-            preparedStatement.setString(12, wali.getAdmin().getIdAdmin());
+            preparedStatement.setString(1, wali.getAdmin().getIdAdmin());
             preparedStatement.setString(2, wali.getNamaWali());
             preparedStatement.setString(3, wali.getNamaWali());
             preparedStatement.setString(4, wali.getNopeWali());
             preparedStatement.setString(5, wali.getIdWali());
             
-            int update = preparedStatement.executeUpdate();
+            int commit = preparedStatement.executeUpdate();
             
-            if(update==1){
+            if(commit==1){
             
             }else{
                 JOptionPane.showMessageDialog(null, "Maaf, update wali gagal",
-                        "Error Message",JOptionPane.ERROR_MESSAGE);
+                        "Error Message(Wali Service)",JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Maaf, update wali gagal, karena : "+ex,
-                        "Error Message",JOptionPane.ERROR_MESSAGE);
+                        "Error Message(Wali Service)",JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
         }
     }
     
     public void deleteWali(String id_wali){
         try {
             preparedStatement = DatabaseUtilities.getConnection().prepareStatement(
-                    "delete from wali where id_wali = ?"
+                    "delete from WALI where id_wali = ?"
             );
             
             preparedStatement.setString(1, id_wali);
                        
-            int insert = preparedStatement.executeUpdate();
+            int commit = preparedStatement.executeUpdate();
             
-            if(insert==1){
+            if(commit==1){
                 JOptionPane.showMessageDialog(null, "Delete wali berhasil");
             }else{
                 JOptionPane.showMessageDialog(null, "Maaf, delete wali gagal",
@@ -99,7 +102,8 @@ public class WaliService {
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Maaf, delete wali gagal, karena : "+ex,
-                        "Error Message",JOptionPane.ERROR_MESSAGE);
+                        "Error Message(Wali Service)",JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
         }
     }
     
@@ -116,17 +120,34 @@ public class WaliService {
         initializeTableModel();
         try {
             statement = DatabaseUtilities.getConnection().createStatement();
-            rs = statement.executeQuery("select wali.* admin.nama_admin where wali.id_admin = admin.id_admin");
+            rs = statement.executeQuery(
+                    "select WALI.* ADMIN.nama_admin where WALI.id_admin = ADMIN.id_admin"
+            );
             
             while(rs.next()){
-                model.addRow(new Object[]{
-                
+                model.addRow(new Object[]{                
                 });
             }
         } catch (SQLException ex) {
             
-        }
-                        
+        }                        
         return model;
+    }
+    
+    public static void main(String[] args) {
+        WaliService waliService = new WaliService();
+        Admin admin = new Admin();
+        admin.setIdAdmin("0912");
+        
+        Wali wali = new Wali();
+        wali.setIdWali("1235");
+        wali.setAlamatWali("Balung Edit");
+        wali.setNamaWali("Wali A");
+        wali.setNopeWali("08651263677");        
+        wali.setAdmin(admin);
+        
+//        waliService.insertWali(wali);
+//        waliService.updateWali(wali);
+//        waliService.deleteWali("1235");
     }
 }

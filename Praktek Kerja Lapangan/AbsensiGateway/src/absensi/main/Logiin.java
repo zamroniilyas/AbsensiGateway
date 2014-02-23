@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 /**
  *
@@ -28,11 +29,24 @@ private DialogComponent dialogComponent;
      * Creates new form Logiin
      */
     public Logiin() {
-        try {
-            UIManager.setLookAndFeel(new WindowsLookAndFeel());
-        } catch (UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(Logiin.class.getName()).log(Level.SEVERE, null, ex);
+        String operatingSystem = System.getProperty("os.name");
+         
+        if ("Linux".equals(operatingSystem) || "Mac OS X".equals(operatingSystem)) {
+            System.out.println("linux");                
+            try {
+                UIManager.setLookAndFeel(new NimbusLookAndFeel());
+            } catch (UnsupportedLookAndFeelException ex) {
+                Logger.getLogger(Logiin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else if ("Windows".equals(operatingSystem)) {
+            System.out.println("windows");                    
+            try {
+                UIManager.setLookAndFeel(new WindowsLookAndFeel());
+            } catch (UnsupportedLookAndFeelException ex) {
+                Logger.getLogger(Logiin.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+                
         initComponents();
         
         adminService = new AdminService();  
